@@ -67,14 +67,24 @@ export const App: FC = () => {
 
         // 2. Sorting
         const sorted = [...filtered].sort((a, b) => {
+            // Convert names to lowercase for case-insensitive comparison
             const nameA = a.name.toLowerCase();
             const nameB = b.name.toLowerCase();
+
+            // Compare names alphabetically
             if (nameA < nameB) {
+                // If nameA comes before nameB:
+                // - Return -1 for ascending order (A-Z)
+                // - Return 1 for descending order (Z-A)
                 return sortOrder === 'asc' ? -1 : 1;
             }
             if (nameA > nameB) {
+                // If nameA comes after nameB:
+                // - Return 1 for ascending order (A-Z)
+                // - Return -1 for descending order (Z-A)
                 return sortOrder === 'asc' ? 1 : -1;
             }
+            // Names are equal - maintain original order
             return 0;
         });
 
